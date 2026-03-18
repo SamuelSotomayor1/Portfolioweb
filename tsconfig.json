@@ -1,0 +1,12 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    /* Esto evita que TS intente cargar librerías de tipos implícitas que causan el error */
+    "types": ["astro/client"],
+    "skipLibCheck": true 
+  }
+}
