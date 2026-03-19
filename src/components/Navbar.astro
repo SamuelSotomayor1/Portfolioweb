@@ -1,0 +1,53 @@
+---
+// Navbar.astro - Componente de Navegación Fijo y Transparente
+---
+
+<header class="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-[#09090b]/80 backdrop-blur-md">
+  <nav class="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
+    
+    <a
+      href="#"
+      class="text-xl font-bold tracking-wide text-[#F5F5F7] transition-opacity hover:opacity-80"
+    >
+      Samuel Sotomayor
+    </a>
+
+    <ul class="hidden items-center gap-10 md:flex">
+      <li>
+        <a href="#about" class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
+          Sobre mi
+          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="#skills" class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
+          Skills
+          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#projects" class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
+          Proyectos
+          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#experience" class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
+          Experiencia
+          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#contact" class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
+          Contacto
+          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+</header>
