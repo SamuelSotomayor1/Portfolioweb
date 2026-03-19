@@ -1,0 +1,78 @@
+---
+const experiences = [
+  {
+    id: 1,
+    role: "Desarrollador de Software Junior (QA / Desarrollo)",
+    company: "Centro de Investigación EduInclusiva",
+    period: "Octubre 2025 - Diciembre 2025",
+    description: "QA y desarrollador junior. Se realizaron pruebas completas del backend (login, registro y módulos) con Jest y desarrollo de funcionalidades core.",
+    skills: ["MySQL", "Express", "NodeJS", "TypeScript", "Handlebars", "Jest", "Github"],
+  },
+  {
+    id: 2,
+    role: "Servicio de TI",
+    company: "Ilustre Municipalidad de Iquique",
+    period: "Noviembre 2024 - Marzo 2025",
+    description: "Apoyo en servicios de TI y desarrollo de una página web interna para optimizar procesos administrativos.",
+    skills: ["React", "TypeScript", "TailwindCSS", "Github"],
+  },
+];
+---
+
+<section id="experience" class="relative bg-[#0B0B0C] px-6 py-32 border-t border-[#1C1C21]">
+  <div class="mx-auto max-w-4xl">
+    
+    <div class="text-center mb-16">
+      <h2 class="mb-4 text-4xl font-bold text-[#F5F5F7] md:text-5xl lg:text-6xl">
+        Experiencia
+      </h2>
+      <p class="mx-auto max-w-2xl text-[#A1A1AA] text-lg">
+        Mi trayectoria profesional construyendo productos digitales y asegurando su calidad.
+      </p>
+    </div>
+
+    <div class="relative">
+      <div class="absolute left-4 top-0 h-full w-0.5 bg-[#1C1C21] md:left-1/2 md:-translate-x-1/2"></div>
+
+      <div class="space-y-12">
+        {experiences.map((exp, index) => (
+          <div class={`relative flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+            
+            <div class="absolute left-4 top-2 z-10 h-4 w-4 -translate-x-1/2 rounded-full border-4 border-[#0B0B0C] bg-[#C6A75E] md:left-1/2"></div>
+
+            <div class="ml-10 md:ml-0 md:w-1/2">
+              <div class={`rounded-2xl border border-[#1C1C21] bg-[#111113] p-6 transition-all hover:border-[#C6A75E]/50 group ${index % 2 === 0 ? 'md:ml-12' : 'md:mr-12 md:text-right'}`}>
+                
+                <span class="mb-2 inline-block text-xs font-semibold tracking-wider text-[#C6A75E] uppercase">
+                  {exp.period}
+                </span>
+
+                <h3 class="text-xl font-bold text-[#F5F5F7] group-hover:text-[#C6A75E] transition-colors">
+                  {exp.role}
+                </h3>
+
+                <p class="mb-3 font-medium text-[#F5F5F7]/80">
+                  {exp.company}
+                </p>
+
+                <p class="mb-6 text-sm leading-relaxed text-[#A1A1AA]">
+                  {exp.description}
+                </p>
+
+                <div class={`flex flex-wrap gap-2 ${index % 2 === 1 ? 'md:justify-end' : ''}`}>
+                  {exp.skills.map((skill) => (
+                    <span class="rounded-md bg-[#1C1C21] px-2.5 py-1 text-[10px] font-medium text-[#A1A1AA] border border-white/5 group-hover:border-[#C6A75E]/30 transition-colors">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div class="hidden md:block md:w-1/2"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,53 +1,84 @@
 ---
-// Navbar.astro - Componente de Navegación Fijo y Transparente
+// Navbar.astro
 ---
 
 <header class="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-[#09090b]/80 backdrop-blur-md">
   <nav class="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
     
-    <a
-      href="#"
-      class="text-xl font-bold tracking-wide text-[#F5F5F7] transition-opacity hover:opacity-80"
-    >
+    <a href="#" class="text-xl font-bold tracking-wide text-[#F5F5F7] transition-opacity hover:opacity-80">
       Samuel Sotomayor
     </a>
 
     <ul class="hidden items-center gap-10 md:flex">
-      <li>
-        <a href="#about" class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
-          Sobre mi
-          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="#skills" class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
-          Skills
-          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#projects" class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
-          Proyectos
-          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#experience" class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
-          Experiencia
-          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#contact" class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
-          Contacto
-          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-      </li>
+      {['about', 'Skills', 'Proyectos', 'Experiencia', 'Contacto'].map((item) => (
+        <li>
+          <a href={`#${item}`} class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7] capitalize">
+            {item === 'about' ? 'Sobre mi' : item}
+            <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        </li>
+      ))}
     </ul>
 
+    <button 
+      id="menu-btn" 
+      class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+      aria-label="Abrir menú"
+    >
+      <span class="h-0.5 w-6 bg-[#F5F5F7] transition-transform duration-300" id="line1"></span>
+      <span class="h-0.5 w-6 bg-[#F5F5F7] transition-opacity duration-300" id="line2"></span>
+      <span class="h-0.5 w-6 bg-[#F5F5F7] transition-transform duration-300" id="line3"></span>
+    </button>
+
   </nav>
+
+  <div 
+    id="mobile-menu" 
+    class="fixed inset-0 top-20 hidden w-full bg-[#09090b] px-6 py-10 md:hidden z-99 h-full"
+  >
+    <ul class="flex flex-col gap-8 text-center">
+      {['about', 'skills', 'projects', 'experience', 'contact'].map((item) => (
+        <li>
+          <a href={`#${item}`} class="mobile-link text-2xl font-semibold text-[#A1A1AA] active:text-[#C6A75E]">
+             {item === 'about' ? 'Sobre mi' : item.charAt(0).toUpperCase() + item.slice(1)}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
 </header>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const links = document.querySelectorAll('.mobile-link');
+  const line1 = document.getElementById('line1');
+  const line2 = document.getElementById('line2');
+  const line3 = document.getElementById('line3');
+
+  function toggleMenu() {
+    menu?.classList.toggle('hidden');
+    document.body.classList.toggle('overflow-hidden'); // Evita scroll al estar abierto
+    
+    // Animación simple de la hamburguesa a X
+    line1?.classList.toggle('rotate-45');
+    line1?.classList.toggle('translate-y-2');
+    line2?.classList.toggle('opacity-0');
+    line3?.classList.toggle('-rotate-45');
+    line3?.classList.toggle('-translate-y-2');
+  }
+
+  btn?.addEventListener('click', toggleMenu);
+
+  // Cerrar menú al hacer click en un link
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      if (!menu?.classList.contains('hidden')) toggleMenu();
+    });
+  });
+</script>
+
+<style>
+  /* Animaciones suaves para la hamburguesa */
+  #line1, #line3 { transform-origin: center; }
+</style>
