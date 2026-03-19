@@ -1,19 +1,26 @@
 ---
 // Navbar.astro
+const navItems = [
+  { label: 'Sobre Mi', href: '#about' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Proyectos', href: '#projects' },
+  { label: 'Experiencia', href: '#experience' },
+  { label: 'Contacto', href: '#contact' },
+];
 ---
 
-<header class="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-[#09090b]/80 backdrop-blur-md">
+<header class="fixed top-0 left-0 z-100 w-full border-b border-white/10 bg-[#09090b]/90 backdrop-blur-xl">
   <nav class="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
     
-    <a href="#" class="text-xl font-bold tracking-wide text-[#F5F5F7] transition-opacity hover:opacity-80">
+    <a href="#" class="text-xl font-bold tracking-tight text-[#F5F5F7] transition-all hover:text-[#C6A75E]">
       Samuel Sotomayor
     </a>
 
-    <ul class="hidden items-center gap-10 md:flex">
-      {['about', 'Skills', 'Proyectos', 'Experiencia', 'Contacto'].map((item) => (
+    <ul class="hidden items-center gap-8 md:flex">
+      {navItems.map((item) => (
         <li>
-          <a href={`#${item}`} class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7] capitalize">
-            {item === 'about' ? 'Sobre Mi' : item}
+          <a href={item.href} class="group relative text-sm font-medium text-[#A1A1AA] transition-colors duration-300 hover:text-[#F5F5F7]">
+            {item.label}
             <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C6A75E] transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
@@ -22,63 +29,73 @@
 
     <button 
       id="menu-btn" 
-      class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
-      aria-label="Abrir menú"
+      class="group relative z-120 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden focus:outline-none"
+      aria-label="Menú"
     >
-      <span class="h-0.5 w-6 bg-[#F5F5F7] transition-transform duration-300" id="line1"></span>
-      <span class="h-0.5 w-6 bg-[#F5F5F7] transition-opacity duration-300" id="line2"></span>
-      <span class="h-0.5 w-6 bg-[#F5F5F7] transition-transform duration-300" id="line3"></span>
+      <span class="h-0.5 w-6 rounded-full bg-[#F5F5F7] transition-all duration-300 ease-in-out" id="line1"></span>
+      <span class="h-0.5 w-6 rounded-full bg-[#F5F5F7] transition-all duration-300 ease-in-out" id="line2"></span>
+      <span class="h-0.5 w-6 rounded-full bg-[#F5F5F7] transition-all duration-300 ease-in-out" id="line3"></span>
     </button>
-
   </nav>
 
-  <div 
-    id="mobile-menu" 
-    class="fixed inset-0 top-20 hidden w-full bg-[#09090b] px-6 py-10 md:hidden z-99 h-full"
-  >
-    <ul class="flex flex-col gap-8 text-center">
-      {['about', 'skills', 'projects', 'experience', 'contact'].map((item) => (
-        <li>
-          <a href={`#${item}`} class="mobile-link text-2xl font-semibold text-[#A1A1AA] active:text-[#C6A75E]">
-             {item === 'about' ? 'Sobre mi' : item.charAt(0).toUpperCase() + item.slice(1)}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
+   <div 
+      id="mobile-menu" 
+      class="fixed inset-0 top-0 z-100 flex h-screen w-full flex-col bg-[#09090b] px-8 pt-32 transition-all duration-500 ease-in-out md:hidden opacity-0 pointer-events-none -translate-y-5"
+    >
+      <ul class="flex flex-col gap-8">
+        {navItems.map((item) => (
+          <li class="border-b border-white/5 pb-6">
+            <a href={item.href} class="mobile-link flex items-center justify-between text-3xl font-bold text-[#F5F5F7] active:text-[#C6A75E]">
+              {item.label}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A75E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-auto pb-16 text-left">
+        <p class="text-sm font-bold uppercase tracking-widest text-[#C6A75E]">Samuel Sotomayor</p>
+        <p class="text-xs text-[#A1A1AA] mt-1">Ingeniero Civil Informático</p>
+      </div>
+    </div>
 </header>
 
 <script>
   const btn = document.getElementById('menu-btn');
   const menu = document.getElementById('mobile-menu');
   const links = document.querySelectorAll('.mobile-link');
+  
   const line1 = document.getElementById('line1');
   const line2 = document.getElementById('line2');
   const line3 = document.getElementById('line3');
 
   function toggleMenu() {
-    menu?.classList.toggle('hidden');
-    document.body.classList.toggle('overflow-hidden'); // Evita scroll al estar abierto
+    // 1. Control de visibilidad del menú
+    menu?.classList.toggle('opacity-0');
+    menu?.classList.toggle('opacity-100');
+    menu?.classList.toggle('pointer-events-none');
+    menu?.classList.toggle('translate-y-[-10px]');
+    menu?.classList.toggle('translate-y-0');
     
-    // Animación simple de la hamburguesa a X
+    // 2. Bloqueo de scroll en el body
+    document.body.classList.toggle('overflow-hidden');
+    
+    // 3. Animación de la hamburguesa
     line1?.classList.toggle('rotate-45');
-    line1?.classList.toggle('translate-y-2');
+    line1?.classList.toggle('translate-y-[8px]');
     line2?.classList.toggle('opacity-0');
     line3?.classList.toggle('-rotate-45');
-    line3?.classList.toggle('-translate-y-2');
+    line3?.classList.toggle('-translate-y-[8px]');
   }
 
   btn?.addEventListener('click', toggleMenu);
 
-  // Cerrar menú al hacer click en un link
+  // Cerrar al clickear links
   links.forEach(link => {
     link.addEventListener('click', () => {
-      if (!menu?.classList.contains('hidden')) toggleMenu();
+      if (menu?.classList.contains('opacity-100')) {
+        toggleMenu();
+      }
     });
   });
 </script>
-
-<style>
-  /* Animaciones suaves para la hamburguesa */
-  #line1, #line3 { transform-origin: center; }
-</style>
