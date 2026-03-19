@@ -1,0 +1,57 @@
+---
+// Hero.astro - 100% Estático y Ultra-Rápido
+---
+
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-20 bg-[#0B0B0C]">
+
+  <div class="absolute inset-0 bg-linear-to-b from-[#0B0B0C] via-[#111113]/40 to-[#0B0B0C]"></div>
+  
+  <div class="relative z-10 mx-auto max-w-5xl text-center">
+    
+    <h1 class="mb-6 text-5xl font-bold leading-tight tracking-tight md:text-7xl lg:text-8xl text-[#F5F5F7]">
+      Samuel
+      <br />
+      <span class="text-[#C6A75E]">
+        Sotomayor
+      </span>
+    </h1>
+
+    <p class="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-[#A1A1AA] md:text-xl text-pretty">
+        Ingeniero Civil Informático especializado en el Desarrollo de Software Full-Stack.
+        Diseño y construyo aplicaciones escalables, eficientes y orientadas a resolver problemas reales.
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="#projects"
+          class="group inline-flex items-center gap-2 rounded-full bg-[#C6A75E] px-8 py-4 font-semibold text-black transition-all hover:bg-[#D4B870] active:scale-95"
+        >
+          <span>Ver mis proyectos</span>
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="18" 
+            height="18" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="2.5" 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            class="transition-transform group-hover:translate-x-1"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+
+        <a
+          href="#contact"
+          class="inline-flex items-center gap-2 rounded-full border border-[#26262B] bg-transparent px-8 py-4 font-semibold text-[#F5F5F7] transition-colors hover:bg-[#17171A]"
+        >
+          Ponte en contacto
+        </a>
+    </div>
+
+  </div>
+
+</section>

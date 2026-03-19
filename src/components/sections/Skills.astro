@@ -1,0 +1,85 @@
+---
+const skillCategories = [
+  {
+    title: "Lenguajes",
+    skills: ["JavaScript", "TypeScript", "Python", "C++"],
+  },
+  {
+    title: "Frontend",
+    skills: ["React", "Angular", "Next.js", "Astro"],
+  },
+  {
+    title: "Backend y Testing",
+    skills: ["Node.js", "Express", "Prisma", "NestJS", "Jest"],
+  },
+  {
+    title: "Bases de Datos",
+    skills: ["MongoDB", "MySQL", "PostgreSQL", "Supabase"],
+  },
+  {
+    title: "Herramientas",
+    skills: ["Git & GitHub", "Postman"],
+  },
+  {
+    title: "Estilos & UI",
+    skills: ["Tailwind CSS", "CSS"],
+  },
+];
+
+const icons: Record<string, string> = {
+  "Lenguajes": "M16 18l6-6-6-6M8 6l-6 6 6 6",
+  "Frontend": "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
+  "Backend y Testing": "M4 7h16M4 12h16m-7 5h7",
+  "Bases de Datos": "M12 15c-4.42 0-8-1.79-8-4s3.58-4 8-4 8 1.79 8 4-3.58 4-8 4z",
+  "Herramientas": "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z",
+  "Estilos & UI": "M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"
+};
+---
+
+<section id="skills" class="relative px-6 py-32 bg-[#0B0B0C]">
+  <div class="mx-auto max-w-5xl">
+    
+    <div class="text-center mb-16">
+      <h2 class="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl text-[#F5F5F7]">
+        Skills y Tech <span class="text-[#C6A75E]">Stack</span>
+      </h2>
+      <p class="mx-auto max-w-2xl text-[#A1A1AA] text-lg">
+        Tecnologías que utilizo en mi día a día para desarrollar aplicaciones web modernas y escalables.
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        skillCategories.map((category) => (
+          <div class="group relative rounded-2xl border border-[#1C1C21] bg-[#111113]/50 p-6 transition-all hover:border-[#C6A75E]/30 hover:bg-[#111113]">
+            
+            <div class="mb-6 flex items-center gap-4">
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#0B0B0C] text-[#C6A75E] transition-all group-hover:bg-[#C6A75E]/10">
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="24" height="24" viewBox="0 0 24 24" 
+                  fill="none" stroke="currentColor" stroke-width="2" 
+                  stroke-linecap="round" stroke-linejoin="round"
+                >
+                  <path d={icons[category.title] || "M12 2v20M2 12h20"} />
+                </svg>
+              </div>
+
+              <h3 class="text-xl font-semibold text-[#F5F5F7]">
+                {category.title}
+              </h3>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              {category.skills.map((skill) => (
+                <span class="rounded-lg border border-[#1C1C21] bg-[#0B0B0C] px-3 py-1.5 text-sm text-[#A1A1AA] transition-colors group-hover:text-[#F5F5F7] group-hover:border-[#26262B]">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
