@@ -1,11 +1,11 @@
 {
-  "name": "",
+  "name": "portfolio-samuel",
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0",
-    "packageManager": "pnpm@10.30.3"
+    "node": ">=20.0.0"
   },
+  "packageManager": "pnpm@10.3.3",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
